@@ -46,7 +46,7 @@
         
         <!-- Perfil -->
         <div class="text-center space-y-2 mb-2">
-            <!-- Imagen de Perfil (Placeholder - puedes cambiar el src por tu logo) -->
+            <!-- Imagen de Perfil -->
             <div class="relative w-24 h-24 mx-auto mb-4">
                 <div class="absolute inset-0 bg-purple-500 rounded-full blur-md opacity-50"></div>
                 <img src="https://raw.githubusercontent.com/DuendeFunk/Links/main/duendefunk.png" 
@@ -74,8 +74,9 @@
         <!-- Botones de Enlaces -->
         <div class="w-full space-y-4">
             
-            <!-- Botón 1: YouTube -->
-            <a href="https://www.youtube.com/@DUENDEFUNK-11-11" target="_blank" class="group block w-full">
+            <!-- Botón 1: YouTube (Con Script App-Opener) -->
+            <!-- Se eliminó el href directo y se usa onclick para manejar la lógica de la app -->
+            <a href="#" onclick="abrirYouTube(event)" class="group block w-full">
                 <div class="relative flex items-center justify-center px-6 py-4 bg-gray-800 hover:bg-red-600 border border-gray-700 hover:border-red-500 rounded-xl transition-all duration-300 shadow-lg transform hover:-translate-y-1">
                     <svg class="absolute left-6 w-6 h-6 text-red-500 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
@@ -100,7 +101,7 @@
                     <svg class="absolute left-6 w-6 h-6 text-pink-500 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                     </svg>
-                    <span class="font-semibold text-gray-100">Seguir en Instagram</span>
+                    <span class="font-semibold text-gray-100">Suscribirse en YouTube</span>
                 </div>
             </a>
             
@@ -115,7 +116,40 @@
     </main>
 
     <script>
-        // Pequeño script para añadir un efecto de entrada suave
+        // Función para abrir la App de YouTube de forma forzada
+        function abrirYouTube(e) {
+            e.preventDefault();
+            const handle = "@DUENDEFUNK-11-11";
+            const webUrl = "https://www.youtube.com/" + handle;
+            
+            // Detección básica del navegador
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            
+            // Android: Usamos el esquema 'intent://' que es el más agresivo para abrir apps desde Chrome/navegadores
+            if (/android/i.test(userAgent)) {
+                // El esquema intent fuerza al sistema a buscar la app
+                const intentUrl = "intent://www.youtube.com/" + handle + "#Intent;package=com.google.android.youtube;scheme=https;end";
+                window.location.href = intentUrl;
+            } 
+            // iOS (iPhone/iPad): Usamos el esquema 'youtube://'
+            else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                const appUrl = "youtube://www.youtube.com/" + handle;
+                
+                // Intentamos abrir la app
+                window.location.href = appUrl;
+
+                // Fallback: Si la app no está instalada, después de 1 segundo redirigimos a la web
+                setTimeout(function() {
+                    window.location.href = webUrl;
+                }, 1000);
+            } 
+            // PC / Desktop: Abrimos en nueva pestaña normal
+            else {
+                window.open(webUrl, '_blank');
+            }
+        }
+
+        // Script de animación de entrada
         document.addEventListener('DOMContentLoaded', () => {
             const main = document.querySelector('main');
             main.classList.remove('opacity-0', 'translate-y-4');
