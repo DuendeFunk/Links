@@ -328,13 +328,13 @@
         .btn-tk:hover { box-shadow: 0 0 40px rgba(0,242,254,0.15); border-color: rgba(0,242,254,0.4); }
         .btn-ig:hover { box-shadow: 0 0 40px rgba(225,48,108,0.15); border-color: rgba(225,48,108,0.4); }
         .btn-mp:hover { box-shadow: 0 0 40px rgba(0,158,227,0.2);  border-color: rgba(0,158,227,0.5); }
-        
-        /* Botón Sobre Mí, Email y Modal */
-        .btn-bio { --brand-color: #9333ea; }
-        .btn-bio:hover { box-shadow: 0 0 40px rgba(147,51,234,0.15); border-color: rgba(147,51,234,0.4); }
-
+        /* Botón Email */
         .btn-mail { --brand-color: #fbbf24; }
         .btn-mail:hover { box-shadow: 0 0 40px rgba(251,191,36,0.15); border-color: rgba(251,191,36,0.4); }
+
+        /* Botón Fechas/Shows */
+        .btn-tour { --brand-color: #10b981; }
+        .btn-tour:hover { box-shadow: 0 0 40px rgba(16,185,129,0.15); border-color: rgba(16,185,129,0.4); }
 
         /* Language Toggle Button */
         .btn-lang {
@@ -518,6 +518,22 @@
                             </div>
                         </button>
 
+                        <!-- Fechas en Vivo (Shows) -->
+                        <button type="button" id="btn-fechas" class="theme-card group btn-tour p-4 flex items-center justify-between gap-4 cursor-pointer md:col-span-2 text-left focus:outline-none">
+                            <div class="flex items-center justify-start gap-4 flex-grow min-w-0 transition-colors">
+                                <div class="theme-icon-box w-12 h-12 md:w-14 md:h-14 shrink-0 flex items-center justify-center text-xl md:text-2xl transition-all duration-300">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                </div>
+                                <div class="flex-grow min-w-0 text-left text-white">
+                                    <h3 class="font-display text-lg leading-tight" data-i18n="tour_title">Próximas Fechas</h3>
+                                    <p class="text-xs truncate opacity-70 mt-0.5 text-gray-400" data-i18n="tour_desc">Shows en vivo y presentaciones</p>
+                                </div>
+                            </div>
+                            <div class="w-10 h-10 items-center justify-center rounded-lg border opacity-60 transition-opacity hover:opacity-100 hidden md:flex border-white/10">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-sm text-white"></i>
+                            </div>
+                        </button>
+
                         <!-- Sobre Mi (Biografía) -->
                         <button type="button" id="btn-sobre-mi" class="theme-card group btn-bio p-4 flex items-center justify-between gap-4 cursor-pointer md:col-span-2 text-left focus:outline-none">
                             <div class="flex items-center justify-start gap-4 flex-grow min-w-0 transition-colors">
@@ -604,6 +620,38 @@
         </div>
     </div>
 
+    <!-- Modal Próximas Fechas -->
+    <div id="modal-fechas" class="fixed inset-0 z-[200] hidden flex-col items-center justify-center p-4 sm:p-6" aria-modal="true">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-md modal-backdrop transition-opacity duration-300 opacity-0" id="backdrop-fechas"></div>
+        
+        <!-- Contenido -->
+        <div class="theme-card relative w-full max-w-lg max-h-[85vh] overflow-y-auto p-6 md:p-8 modal-content scale-95 opacity-0 transition-all duration-300 flex flex-col gap-5 bg-[#0a0a0a]/95 custom-scrollbar z-10 border-white/10 shadow-2xl">
+            <!-- Botón Cerrar -->
+            <button type="button" id="btn-close-fechas" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 text-white transition-colors focus:outline-none border border-white/10">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            
+            <!-- Header Modal Fechas -->
+            <div class="flex flex-col items-center sm:items-start gap-4 border-b border-white/10 pb-6 text-center sm:text-left mt-2 sm:mt-0">
+                 <div class="w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-3xl text-[#10b981] mx-auto sm:mx-0 shadow-lg">
+                     <i class="fa-solid fa-ticket"></i>
+                 </div>
+                 <div class="w-full flex flex-col justify-center h-full">
+                     <h2 class="font-display text-2xl md:text-3xl text-white tracking-tighter uppercase text-center sm:text-left" data-i18n="tour_title">Próximas Fechas</h2>
+                     <p class="font-display text-xs md:text-sm text-[#10b981] tracking-widest mt-1 uppercase text-center sm:text-left" data-i18n="tour_subtitle">Gira / Presentaciones</p>
+                 </div>
+            </div>
+
+            <!-- Cuerpo Modal Fechas: Estado "Próximamente" -->
+            <div class="text-gray-300 font-body text-sm md:text-base leading-relaxed space-y-6 mt-4 flex flex-col items-center justify-center py-8">
+                <i class="fa-solid fa-hourglass-half text-4xl text-gray-500 mb-2 animate-pulse"></i>
+                <h3 class="text-white font-display text-xl text-center uppercase" data-i18n="tour_coming_soon">Próximamente</h3>
+                <p class="text-center text-gray-400 max-w-[280px]" data-i18n="tour_coming_desc">Estamos preparando los nuevos shows. ¡Mantente atento a las redes sociales!</p>
+            </div>
+        </div>
+    </div>
+
     <!-- Toast Notification -->
     <div id="toast">
         <i class="fa-solid fa-check-circle text-lg hidden md:block"></i>
@@ -637,7 +685,12 @@
                 toast_copy: "¡Alias copiado! \"repartobuenaonda\"",
                 email_contact: "Contacto Oficial",
                 email_label: "EMAIL:",
-                toast_email: "¡Email copiado! duendefunkmusic@gmail.com"
+                toast_email: "¡Email copiado! duendefunkmusic@gmail.com",
+                tour_title: "Próximas Fechas",
+                tour_desc: "Shows en vivo y presentaciones",
+                tour_subtitle: "Gira / Presentaciones",
+                tour_coming_soon: "Próximamente",
+                tour_coming_desc: "Estamos preparando los nuevos shows. ¡Mantente atento a las redes sociales!"
             },
             en: {
                 subtitle: "LUZ DEL ALBA - AVAILABLE NOW",
@@ -660,7 +713,12 @@
                 toast_copy: "Alias copied! \"repartobuenaonda\"",
                 email_contact: "Official Contact",
                 email_label: "EMAIL:",
-                toast_email: "Email copied! duendefunkmusic@gmail.com"
+                toast_email: "Email copied! duendefunkmusic@gmail.com",
+                tour_title: "Upcoming Dates",
+                tour_desc: "Live shows and performances",
+                tour_subtitle: "Tour / Performances",
+                tour_coming_soon: "Coming Soon",
+                tour_coming_desc: "We are preparing new shows. Stay tuned to our social media!"
             }
         };
 
@@ -828,6 +886,37 @@
         btnSobreMi.addEventListener('click', openModal);
         btnCloseModal.addEventListener('click', closeModal);
         modalBackdrop.addEventListener('click', closeModal);
+
+        // --- Modal Fechas Logic ---
+        const btnFechas = document.getElementById('btn-fechas');
+        const modalFechas = document.getElementById('modal-fechas');
+        const btnCloseFechas = document.getElementById('btn-close-fechas');
+        const backdropFechas = document.getElementById('backdrop-fechas');
+
+        function openModalFechas() {
+            trackEvent('abrir_modal', 'Info', 'Modal Fechas');
+            modalFechas.classList.remove('hidden');
+            modalFechas.classList.add('flex');
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    modalFechas.classList.add('modal-show');
+                    document.body.style.overflow = 'hidden'; 
+                });
+            });
+        }
+
+        function closeModalFechas() {
+            modalFechas.classList.remove('modal-show');
+            document.body.style.overflow = ''; 
+            setTimeout(() => {
+                modalFechas.classList.add('hidden');
+                modalFechas.classList.remove('flex');
+            }, 300); 
+        }
+
+        btnFechas.addEventListener('click', openModalFechas);
+        btnCloseFechas.addEventListener('click', closeModalFechas);
+        backdropFechas.addEventListener('click', closeModalFechas);
     </script>
 </body>
 </html>
