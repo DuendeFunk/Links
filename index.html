@@ -138,6 +138,50 @@
     }
     </script>
 
+    <!-- Schema Markup (MusicEvent) para Google Search -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MusicEvent",
+      "name": "HipHopFactory Vol. 2",
+      "startDate": "2026-10-15T20:30:00-03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Ophelia Craft Beer",
+        "hasMap": "https://maps.app.goo.gl/NKuChTGzBZHiTuEo9",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Av. 44 1135",
+          "postalCode": "B1902",
+          "addressLocality": "La Plata",
+          "addressRegion": "Buenos Aires",
+          "addressCountry": "AR"
+        }
+      },
+      "description": "Segundo volumen de HipHopFactory en Ophelia Craft Beer con Duende Funk, Valen Crippa, Enzo Cebrian y Valen7inno. Open Mic desde las 20:30 hs. Entrada libre y gratuita.",
+      "performer": [
+        { "@type": "Person", "name": "Duende Funk", "url": "https://www.instagram.com/duendefunk/" },
+        { "@type": "Person", "name": "Valen Crippa", "url": "https://www.instagram.com/valen.crippa/" },
+        { "@type": "Person", "name": "Enzo Cebrian", "url": "https://www.instagram.com/enzocebrian/" },
+        { "@type": "Person", "name": "Valen7inno", "url": "https://www.instagram.com/valen7inno/" }
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "ARS",
+        "availability": "https://schema.org/InStock",
+        "url": "https://www.instagram.com/hiphopfactory.lp/"
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "HipHopFactory",
+        "url": "https://www.instagram.com/hiphopfactory.lp/"
+      }
+    }
+    </script>
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JMMF0TYE02"></script>
     <script>
@@ -538,7 +582,13 @@
                                     <i class="fa-solid fa-calendar-days"></i>
                                 </div>
                                 <div class="flex-grow min-w-0 text-left text-white">
-                                    <h3 class="font-display text-lg leading-tight" data-i18n="tour_title">Próximas Fechas</h3>
+                                    <div class="flex items-center gap-2.5 flex-wrap">
+                                        <h3 class="font-display text-lg leading-tight" data-i18n="tour_title">Próximas Fechas</h3>
+                                        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#10b981]/20 text-[#10b981] border border-[#10b981]/40 uppercase tracking-wider">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-ping inline-block"></span>
+                                            15 OCT · 20:30 HS
+                                        </span>
+                                    </div>
                                     <p class="text-xs truncate opacity-70 mt-0.5 text-gray-400" data-i18n="tour_desc">Shows en vivo y presentaciones</p>
                                 </div>
                             </div>
@@ -639,16 +689,16 @@
         <div class="absolute inset-0 bg-black/70 backdrop-blur-md modal-backdrop transition-opacity duration-300 opacity-0" id="backdrop-fechas"></div>
         
         <!-- Contenido -->
-        <div class="theme-card relative w-full max-w-lg max-h-[85vh] overflow-y-auto p-6 md:p-8 modal-content scale-95 opacity-0 transition-all duration-300 flex flex-col gap-5 bg-[#0a0a0a]/95 custom-scrollbar z-10 border-white/10 shadow-2xl">
+        <div class="theme-card relative w-full max-w-2xl max-h-[85vh] overflow-y-auto p-6 md:p-8 modal-content scale-95 opacity-0 transition-all duration-300 flex flex-col gap-6 bg-[#0a0a0a]/95 custom-scrollbar z-10 border-white/10 shadow-2xl">
             <!-- Botón Cerrar -->
             <button type="button" id="btn-close-fechas" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 text-white transition-colors focus:outline-none border border-white/10">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
             
             <!-- Header Modal Fechas -->
-            <div class="flex flex-col items-center sm:items-start gap-4 border-b border-white/10 pb-6 text-center sm:text-left mt-2 sm:mt-0">
-                 <div class="w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-3xl text-[#10b981] mx-auto sm:mx-0 shadow-lg">
-                     <i class="fa-solid fa-ticket"></i>
+            <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4 border-b border-white/10 pb-6 text-center sm:text-left mt-2 sm:mt-0">
+                 <div class="w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-3xl text-[#10b981] mx-auto sm:mx-0 shadow-lg shrink-0">
+                     <i class="fa-solid fa-calendar-days"></i>
                  </div>
                  <div class="w-full flex flex-col justify-center h-full">
                      <h2 class="font-display text-2xl md:text-3xl text-white tracking-tighter uppercase text-center sm:text-left" data-i18n="tour_title">Próximas Fechas</h2>
@@ -656,11 +706,169 @@
                  </div>
             </div>
 
-            <!-- Cuerpo Modal Fechas: Estado "Próximamente" -->
-            <div class="text-gray-300 font-body text-sm md:text-base leading-relaxed space-y-6 mt-4 flex flex-col items-center justify-center py-8">
-                <i class="fa-solid fa-hourglass-half text-4xl text-gray-500 mb-2 animate-pulse"></i>
-                <h3 class="text-white font-display text-xl text-center uppercase" data-i18n="tour_coming_soon">Próximamente</h3>
-                <p class="text-center text-gray-400 max-w-[280px]" data-i18n="tour_coming_desc">Estamos preparando los nuevos shows. ¡Mantente atento a las redes sociales!</p>
+            <!-- Contenedor del Evento -->
+            <div class="flex flex-col gap-5">
+                <article class="bg-gradient-to-b from-white/[0.08] to-white/[0.02] border border-[#10b981]/30 rounded-2xl p-5 md:p-6 shadow-2xl relative overflow-hidden group hover:border-[#10b981]/50 transition-all duration-300">
+                    
+                    <!-- Resplandor ambiental de fondo -->
+                    <div class="absolute -top-16 -right-16 w-40 h-40 bg-[#10b981]/15 rounded-full blur-3xl pointer-events-none"></div>
+
+                    <!-- Header de la Tarjeta -->
+                    <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-white/10">
+                        <div class="flex items-center gap-3.5">
+                            <!-- Bloque Calendario -->
+                            <div class="flex flex-col items-center justify-center bg-[#10b981]/15 border border-[#10b981]/40 rounded-xl px-3 py-1.5 text-center min-w-[65px] shadow-inner">
+                                <span class="font-display text-2xl font-bold text-white leading-none">15</span>
+                                <span class="text-[11px] font-bold text-[#10b981] tracking-wider uppercase leading-tight mt-0.5" data-i18n="tour_date_month">OCT</span>
+                                <span class="text-[9px] text-gray-400 leading-tight">2026</span>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2 text-xs font-semibold text-[#10b981]">
+                                    <i class="fa-regular fa-clock"></i>
+                                    <span data-i18n="tour_date_time">20:30 HS</span>
+                                </div>
+                                <h3 class="font-display text-lg md:text-xl text-white tracking-tight mt-0.5">
+                                    HIP HOP FACTORY <span class="text-xs text-[#00F2FE] tracking-widest font-normal">VOL. 2</span>
+                                </h3>
+                            </div>
+                        </div>
+
+                        <!-- Badge Entrada Libre y Gratuita -->
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+                            <i class="fa-solid fa-sparkles text-amber-300"></i>
+                            <span data-i18n="tour_free_entry">Entrada libre y gratuita</span>
+                        </span>
+                    </div>
+
+                    <!-- Detalles del Evento -->
+                    <div class="mt-4 space-y-4 text-gray-300 font-body text-sm">
+                        
+                        <!-- Lugar y Ciclo -->
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs md:text-sm bg-white/5 p-3.5 rounded-xl border border-white/5">
+                            <div class="flex items-center gap-2 text-gray-300">
+                                <i class="fa-solid fa-location-dot text-[#E1306C] text-base shrink-0"></i>
+                                <span>Lugar:</span>
+                                <a href="https://maps.app.goo.gl/NKuChTGzBZHiTuEo9" target="_blank" rel="noopener noreferrer" class="text-white font-bold hover:text-[#00F2FE] transition-colors underline decoration-dotted" title="Ver en Google Maps">
+                                    Ophelia Craft Beer
+                                </a>
+                                <a href="https://www.instagram.com/opheliacraftbeer/" target="_blank" rel="noopener noreferrer" class="text-xs text-gray-400 hover:text-white transition-colors">
+                                    (@opheliacraftbeer)
+                                </a>
+                            </div>
+                            <div class="flex items-center gap-2 text-gray-300">
+                                <i class="fa-solid fa-fire text-amber-400 text-base shrink-0"></i>
+                                <span>Ciclo:</span>
+                                <a href="https://www.instagram.com/hiphopfactory.lp/" target="_blank" rel="noopener noreferrer" class="text-white font-bold hover:text-[#00F2FE] transition-colors underline decoration-dotted">
+                                    @hiphopfactory.lp
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Texto Descriptivo -->
+                        <p class="text-gray-300 leading-relaxed" data-i18n="tour_event_desc">
+                            Este 15 de octubre nos volvemos a encontrar en @opheliacraftbeer para el segundo volumen de HipHopFactory 🔥
+                        </p>
+
+                        <!-- Destacado Open Mic -->
+                        <div class="bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent border border-amber-500/30 rounded-xl p-3.5 flex items-start gap-3">
+                            <div class="w-9 h-9 rounded-lg bg-amber-500/20 flex items-center justify-center text-amber-400 shrink-0 mt-0.5">
+                                <i class="fa-solid fa-microphone"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold text-xs md:text-sm" data-i18n="tour_openmic_title">
+                                    Open Mic a partir de las 20:30 hs
+                                </h4>
+                                <p class="text-gray-400 text-xs mt-0.5" data-i18n="tour_openmic_desc">
+                                    Los esperamos para que se animen a subir a la tarima 🔥
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Artistas / Lineup -->
+                        <div>
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2.5 flex items-center gap-2">
+                                <i class="fa-solid fa-microphone-lines text-[#00F2FE]"></i>
+                                <span data-i18n="tour_lineup_title">En esta fecha van a estar presentando su música:</span>
+                            </h4>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                                <a href="https://www.instagram.com/duendefunk/" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center justify-center p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-[#00F2FE]/40 transition-all text-center group/artist">
+                                    <span class="text-xs font-bold text-white group-hover/artist:text-[#00F2FE] transition-colors">@duendefunk</span>
+                                    <span class="text-[10px] text-gray-400 mt-0.5">Duende Funk</span>
+                                </a>
+                                <a href="https://www.instagram.com/valen.crippa/" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center justify-center p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-[#00F2FE]/40 transition-all text-center group/artist">
+                                    <span class="text-xs font-bold text-white group-hover/artist:text-[#00F2FE] transition-colors">@valen.crippa</span>
+                                    <span class="text-[10px] text-gray-400 mt-0.5">Valen Crippa</span>
+                                </a>
+                                <a href="https://www.instagram.com/enzocebrian/" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center justify-center p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-[#00F2FE]/40 transition-all text-center group/artist">
+                                    <span class="text-xs font-bold text-white group-hover/artist:text-[#00F2FE] transition-colors">@enzocebrian</span>
+                                    <span class="text-[10px] text-gray-400 mt-0.5">Enzo Cebrian</span>
+                                </a>
+                                <a href="https://www.instagram.com/valen7inno/" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center justify-center p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-[#00F2FE]/40 transition-all text-center group/artist">
+                                    <span class="text-xs font-bold text-white group-hover/artist:text-[#00F2FE] transition-colors">@valen7inno</span>
+                                    <span class="text-[10px] text-gray-400 mt-0.5">Valen7inno</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Musicaliza y Host -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+                            <div class="flex items-center gap-2.5 bg-white/5 px-3.5 py-2.5 rounded-xl border border-white/5 text-xs">
+                                <i class="fa-solid fa-compact-disc text-[#00F2FE] text-base"></i>
+                                <span class="text-gray-400" data-i18n="tour_musicaliza">Musicaliza:</span>
+                                <a href="https://www.instagram.com/tonyfunsin23/" target="_blank" rel="noopener noreferrer" class="text-white font-semibold hover:text-[#00F2FE] transition-colors">@tonyfunsin23</a>
+                            </div>
+                            <div class="flex items-center gap-2.5 bg-white/5 px-3.5 py-2.5 rounded-xl border border-white/5 text-xs">
+                                <i class="fa-solid fa-bullhorn text-[#E1306C] text-base"></i>
+                                <span class="text-gray-400" data-i18n="tour_host">Host:</span>
+                                <a href="https://www.instagram.com/quienesklein/" target="_blank" rel="noopener noreferrer" class="text-white font-semibold hover:text-[#E1306C] transition-colors">@quienesklein</a>
+                            </div>
+                        </div>
+
+                        <!-- Ubicación y Mapa Interactivo -->
+                        <div class="bg-white/5 border border-white/10 rounded-xl p-3.5 space-y-3">
+                            <div class="flex items-center justify-between flex-wrap gap-2 text-xs">
+                                <div class="flex items-center gap-2 text-gray-300">
+                                    <i class="fa-solid fa-map-location-dot text-[#10b981] text-base"></i>
+                                    <div>
+                                        <span class="font-bold text-white block">Ophelia Craft Beer</span>
+                                        <span class="text-[11px] text-gray-400">Av. 44 1135, B1902 La Plata, Provincia de Buenos Aires</span>
+                                    </div>
+                                </div>
+                                <a href="https://maps.app.goo.gl/NKuChTGzBZHiTuEo9" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#10b981]/15 hover:bg-[#10b981]/25 text-[#10b981] border border-[#10b981]/30 text-xs font-semibold transition-all hover:scale-105" onclick="trackEvent('click_mapa', 'Ubicacion', 'Google Maps Ophelia')">
+                                    <i class="fa-solid fa-diamond-turn-right"></i>
+                                    <span data-i18n="tour_map_link">Cómo llegar</span>
+                                </a>
+                            </div>
+
+                            <!-- Contenedor del Mapa -->
+                            <div class="relative w-full h-44 sm:h-48 rounded-lg overflow-hidden border border-white/10 group/map">
+                                <iframe 
+                                    src="https://maps.google.com/maps?q=Av.+44+1135,+B1902+La+Plata,+Provincia+de+Buenos+Aires&hl=es&z=16&output=embed"
+                                    width="100%" 
+                                    height="100%" 
+                                    style="border:0; filter: contrast(1.05) opacity(0.9);" 
+                                    allowfullscreen="" 
+                                    loading="lazy" 
+                                    referrerpolicy="no-referrer-when-downgrade"
+                                    title="Ubicación Ophelia Craft Beer en Google Maps">
+                                </iframe>
+                                <a href="https://maps.app.goo.gl/NKuChTGzBZHiTuEo9" target="_blank" rel="noopener noreferrer" class="absolute bottom-2.5 right-2.5 bg-black/85 backdrop-blur-md text-white hover:text-[#10b981] text-xs font-semibold px-3 py-1.5 rounded-lg border border-white/20 hover:border-[#10b981]/50 flex items-center gap-1.5 transition-all shadow-xl">
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                    <span data-i18n="tour_open_map">Abrir en Google Maps</span>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Enlace CTA Instagram -->
+                    <div class="mt-5 pt-4 border-t border-white/10">
+                        <a href="https://www.instagram.com/hiphopfactory.lp/" target="_blank" rel="noopener noreferrer" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#10b981] to-[#059669] hover:from-[#059669] hover:to-[#047857] text-white font-display text-xs md:text-sm tracking-wider uppercase flex items-center justify-center gap-2.5 transition-all shadow-lg hover:shadow-[#10b981]/25 hover:scale-[1.01] text-center" onclick="trackEvent('click_evento', 'Shows', 'HipHopFactory Vol 2')">
+                            <i class="fa-brands fa-instagram text-lg"></i>
+                            <span data-i18n="tour_cta">Ver más info en @hiphopfactory.lp</span>
+                        </a>
+                    </div>
+                </article>
             </div>
         </div>
     </div>
@@ -702,8 +910,18 @@
                 tour_title: "Próximas Fechas",
                 tour_desc: "Shows en vivo y presentaciones",
                 tour_subtitle: "Gira / Presentaciones",
-                tour_coming_soon: "Próximamente",
-                tour_coming_desc: "Estamos preparando los nuevos shows. ¡Mantente atento a las redes sociales!"
+                tour_date_month: "OCT",
+                tour_date_time: "20:30 HS",
+                tour_free_entry: "Entrada libre y gratuita",
+                tour_event_desc: "Este 15 de octubre nos volvemos a encontrar en @opheliacraftbeer para el segundo volumen de HipHopFactory 🔥",
+                tour_openmic_title: "Open Mic a partir de las 20:30 hs",
+                tour_openmic_desc: "Los esperamos para que se animen a subir a la tarima 🔥",
+                tour_lineup_title: "En esta fecha van a estar presentando su música:",
+                tour_musicaliza: "Musicaliza:",
+                tour_host: "Host:",
+                tour_map_link: "Cómo llegar",
+                tour_open_map: "Abrir en Google Maps",
+                tour_cta: "Ver más info en @hiphopfactory.lp"
             },
             en: {
                 subtitle: "LUZ DEL ALBA - AVAILABLE NOW",
@@ -730,8 +948,18 @@
                 tour_title: "Upcoming Dates",
                 tour_desc: "Live shows and performances",
                 tour_subtitle: "Tour / Performances",
-                tour_coming_soon: "Coming Soon",
-                tour_coming_desc: "We are preparing new shows. Stay tuned to our social media!"
+                tour_date_month: "OCT",
+                tour_date_time: "8:30 PM",
+                tour_free_entry: "Free Admission",
+                tour_event_desc: "This October 15 we meet again at @opheliacraftbeer for the second volume of HipHopFactory 🔥",
+                tour_openmic_title: "Open Mic starting at 8:30 PM",
+                tour_openmic_desc: "Come step up to the stage and take the mic! 🔥",
+                tour_lineup_title: "Artists performing live at this show:",
+                tour_musicaliza: "Music / DJ:",
+                tour_host: "Host:",
+                tour_map_link: "Get Directions",
+                tour_open_map: "Open in Google Maps",
+                tour_cta: "More info on @hiphopfactory.lp"
             }
         };
 
