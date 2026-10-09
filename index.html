@@ -37,6 +37,102 @@
     <meta name="twitter:description" content="Canción estelar del EP MÍRAME BRILLAR por Bull MNK, Hernuss MNK y Nahuel Sinaka. Prod. by Liam ✨">
     <meta name="twitter:image" content="https://raw.githubusercontent.com/DuendeFunk/nahuelsinaka/main/nahuelsinaka.png">
 
+    <!-- Schema.org Datos Estructurados (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://nahuelsinaka.com/#artist",
+          "name": "Nahuel Sinaka",
+          "alternateName": "Sinaka",
+          "jobTitle": "Cantante, Rapero y Compositor",
+          "birthDate": "2002-05-28",
+          "birthPlace": {
+            "@type": "Place",
+            "name": "Villajoyosa, Alicante, España"
+          },
+          "url": "https://nahuelsinaka.com/",
+          "image": "https://raw.githubusercontent.com/DuendeFunk/nahuelsinaka/main/nahuelsinaka.png",
+          "description": "Rapero y compositor hispano-argentino. Referente de la cultura hip hop en San Luis y Buenos Aires, autor del EP Mírame Brillar y del single Caen Las Estrellas.",
+          "genre": ["Hip Hop", "Rap", "Trap", "Música Urbana"],
+          "sameAs": [
+            "https://open.spotify.com/intl-es/album/4MFDjRAPf3fvFbBAF2cvn1",
+            "https://music.apple.com/us/album/m%C3%ADrame-brillar-feat-hernuss-mnk-ep/6774416845",
+            "https://www.youtube.com/@NahuelSinaka",
+            "https://www.instagram.com/nahuelsinaka/",
+            "https://www.tiktok.com/@nahuel.sinaka",
+            "https://distrokid.com/hyperfollow/nahuelsinaka1/mrame-brillar"
+          ]
+        },
+        {
+          "@type": "MusicAlbum",
+          "@id": "https://nahuelsinaka.com/#album",
+          "name": "Mírame Brillar",
+          "albumReleaseType": "https://schema.org/EP",
+          "byArtist": {
+            "@id": "https://nahuelsinaka.com/#artist"
+          },
+          "genre": ["Hip Hop", "Rap"],
+          "image": "https://raw.githubusercontent.com/DuendeFunk/nahuelsinaka/main/nahuelsinaka.png",
+          "url": "https://music.apple.com/us/album/m%C3%ADrame-brillar-feat-hernuss-mnk-ep/6774416845"
+        },
+        {
+          "@type": "MusicRecording",
+          "@id": "https://nahuelsinaka.com/#track",
+          "name": "Caen Las Estrellas",
+          "url": "https://nahuelsinaka.com/",
+          "inAlbum": {
+            "@id": "https://nahuelsinaka.com/#album"
+          },
+          "byArtist": [
+            {
+              "@id": "https://nahuelsinaka.com/#artist"
+            },
+            {
+              "@type": "Person",
+              "name": "Bull MNK"
+            },
+            {
+              "@type": "Person",
+              "name": "Hernuss MNK"
+            }
+          ],
+          "producer": {
+            "@type": "Person",
+            "name": "Liam"
+          },
+          "image": "https://raw.githubusercontent.com/DuendeFunk/nahuelsinaka/main/nahuelsinaka.png",
+          "description": "Canción estelar del EP MÍRAME BRILLAR por Bull MNK, Hernuss MNK y Nahuel Sinaka. Prod. by Liam.",
+          "genre": ["Hip Hop", "Rap"]
+        },
+        {
+          "@type": "VideoObject",
+          "@id": "https://nahuelsinaka.com/#video",
+          "name": "Nahuel Sinaka - Caen Las Estrellas",
+          "description": "Canción estelar del EP MÍRAME BRILLAR por Bull MNK, Hernuss MNK y Nahuel Sinaka. Prod. by Liam.",
+          "thumbnailUrl": "https://raw.githubusercontent.com/DuendeFunk/nahuelsinaka/main/nahuelsinaka.png",
+          "embedUrl": "https://www.youtube.com/embed/dJPsdLUEwAk",
+          "contentUrl": "https://www.youtube.com/watch?v=dJPsdLUEwAk",
+          "uploadDate": "2024-01-01T00:00:00Z",
+          "inLanguage": "es"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://nahuelsinaka.com/#website",
+          "url": "https://nahuelsinaka.com/",
+          "name": "Nahuel Sinaka - Sitio Oficial",
+          "description": "Página oficial de Nahuel Sinaka: música, videoclips, biografía y plataformas de streaming.",
+          "publisher": {
+            "@id": "https://nahuelsinaka.com/#artist"
+          },
+          "inLanguage": "es"
+        }
+      ]
+    }
+    </script>
+
     <!-- CSS & Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Special+Elite&display=swap" rel="stylesheet">
