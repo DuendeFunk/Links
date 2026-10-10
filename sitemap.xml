@@ -3,8 +3,8 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.duendefunk.com/</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://www.duendefunk.com/fotoperfil.png</image:loc>
@@ -13,6 +13,10 @@
     <image:image>
       <image:loc>https://www.duendefunk.com/duendefunk.png</image:loc>
       <image:title>Duende Funk - Logo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.duendefunk.com/favicon.png</image:loc>
+      <image:title>Duende Funk - Favicon</image:title>
     </image:image>
   </url>
 </urlset>

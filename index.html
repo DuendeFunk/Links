@@ -509,6 +509,31 @@
         .btn-tour { --brand-color: #10b981; }
         .btn-tour:hover { box-shadow: 0 0 40px rgba(16,185,129,0.15); border-color: rgba(16,185,129,0.4); }
 
+        /* Botón Beatmaker Showcase */
+        .btn-beats { --brand-color: #a855f7; }
+        .btn-beats:hover { box-shadow: 0 0 40px rgba(168,85,247,0.25); border-color: rgba(168,85,247,0.5); }
+
+        /* Animación de ondas sonoras en Beat Player */
+        @keyframes waveDance {
+            0%, 100% { height: 4px; }
+            50% { height: 22px; }
+        }
+        .wave-bar {
+            width: 3px;
+            height: 4px;
+            background-color: #a855f7;
+            border-radius: 2px;
+            display: inline-block;
+            transition: height 0.2s;
+        }
+        .wave-playing .wave-bar {
+            animation: waveDance 0.8s ease-in-out infinite;
+        }
+        .wave-playing .wave-bar:nth-child(2) { animation-delay: 0.15s; background-color: #00F2FE; }
+        .wave-playing .wave-bar:nth-child(3) { animation-delay: 0.3s; background-color: #e1306c; }
+        .wave-playing .wave-bar:nth-child(4) { animation-delay: 0.45s; background-color: #a855f7; }
+        .wave-playing .wave-bar:nth-child(5) { animation-delay: 0.6s; background-color: #00F2FE; }
+
         /* Language Toggle Button */
         .btn-lang {
             position: absolute;
@@ -786,6 +811,28 @@
                             </div>
                         </button>
 
+                        <!-- Beatmaker Showcase (Opción 1) -->
+                        <button type="button" id="btn-beats" class="theme-card group btn-beats p-4 flex items-center justify-between gap-4 cursor-pointer md:col-span-2 text-left focus:outline-none">
+                            <div class="flex items-center justify-start gap-4 flex-grow min-w-0 transition-colors">
+                                <div class="theme-icon-box w-12 h-12 md:w-14 md:h-14 shrink-0 flex items-center justify-center text-xl md:text-2xl transition-all duration-300">
+                                    <i class="fa-solid fa-compact-disc"></i>
+                                </div>
+                                <div class="flex-grow min-w-0 text-left text-white">
+                                    <div class="flex items-center gap-2.5 flex-wrap">
+                                        <h3 class="font-display text-lg leading-tight" data-i18n="beats_title">Beatmaker Showcase</h3>
+                                        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#9333ea]/20 text-[#c084fc] border border-[#9333ea]/40 uppercase tracking-wider">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-[#c084fc] animate-ping inline-block"></span>
+                                            PROD BY DUENDEFUNK
+                                        </span>
+                                    </div>
+                                    <p class="text-xs truncate opacity-70 mt-0.5 text-gray-400" data-i18n="beats_desc">Escuchar beats, instrumentales & producciones</p>
+                                </div>
+                            </div>
+                            <div class="w-10 h-10 items-center justify-center rounded-lg border opacity-60 transition-opacity hover:opacity-100 hidden md:flex border-white/10">
+                                <i class="fa-solid fa-sliders text-sm text-white"></i>
+                            </div>
+                        </button>
+
                         <!-- Sobre Mi (Biografía) -->
                         <button type="button" id="btn-sobre-mi" class="theme-card group btn-bio p-4 flex items-center justify-between gap-4 cursor-pointer md:col-span-2 text-left focus:outline-none">
                             <div class="flex items-center justify-start gap-4 flex-grow min-w-0 transition-colors">
@@ -929,6 +976,32 @@
                         </span>
                     </div>
 
+                    <!-- Cuenta Regresiva al Evento (Opción 2) -->
+                    <div class="bg-black/50 border border-[#10b981]/30 rounded-2xl p-4 flex flex-col items-center justify-center gap-2.5 shadow-inner mt-4">
+                        <span class="text-[11px] font-bold text-[#10b981] tracking-widest uppercase flex items-center gap-2">
+                            <i class="fa-solid fa-hourglass-half"></i>
+                            <span data-i18n="countdown_title">Cuenta Regresiva para el Show</span>
+                        </span>
+                        <div class="grid grid-cols-4 gap-2 sm:gap-3 text-center w-full max-w-sm">
+                            <div class="bg-white/5 border border-white/10 rounded-xl p-2.5 flex flex-col items-center">
+                                <span id="countdown-days" class="font-display text-xl sm:text-2xl font-bold text-white">00</span>
+                                <span class="text-[9px] sm:text-[10px] text-gray-400 uppercase tracking-wider mt-0.5" data-i18n="days">Días</span>
+                            </div>
+                            <div class="bg-white/5 border border-white/10 rounded-xl p-2.5 flex flex-col items-center">
+                                <span id="countdown-hours" class="font-display text-xl sm:text-2xl font-bold text-white">00</span>
+                                <span class="text-[9px] sm:text-[10px] text-gray-400 uppercase tracking-wider mt-0.5" data-i18n="hours">Horas</span>
+                            </div>
+                            <div class="bg-white/5 border border-white/10 rounded-xl p-2.5 flex flex-col items-center">
+                                <span id="countdown-minutes" class="font-display text-xl sm:text-2xl font-bold text-white">00</span>
+                                <span class="text-[9px] sm:text-[10px] text-gray-400 uppercase tracking-wider mt-0.5" data-i18n="mins">Min</span>
+                            </div>
+                            <div class="bg-white/5 border border-white/10 rounded-xl p-2.5 flex flex-col items-center">
+                                <span id="countdown-seconds" class="font-display text-xl sm:text-2xl font-bold text-[#10b981]">00</span>
+                                <span class="text-[9px] sm:text-[10px] text-gray-400 uppercase tracking-wider mt-0.5" data-i18n="secs">Seg</span>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Detalles del Evento -->
                     <div class="mt-4 space-y-4 text-gray-300 font-body text-sm">
                         
@@ -1050,14 +1123,139 @@
 
                     </div>
 
-                    <!-- Enlace CTA Instagram -->
-                    <div class="mt-5 pt-4 border-t border-white/10">
-                        <a href="https://www.instagram.com/hiphopfactory.lp/" target="_blank" rel="noopener noreferrer" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#10b981] to-[#059669] hover:from-[#059669] hover:to-[#047857] text-white font-display text-xs md:text-sm tracking-wider uppercase flex items-center justify-center gap-2.5 transition-all shadow-lg hover:shadow-[#10b981]/25 hover:scale-[1.01] text-center" onclick="trackEvent('click_evento', 'Shows', 'HipHopFactory Vol 2')">
+                    <!-- Enlace CTA Instagram y Google Calendar (Opción 2) -->
+                    <div class="mt-5 pt-4 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=HipHopFactory+Vol.+2+-+Duende+Funk&dates=20261015T233000Z/20261016T050000Z&details=HipHopFactory+Vol.+2+en+Ophelia+Craft+Beer+con+Duende+Funk,+Valen+Crippa,+Enzo+Cebrian+y+Valen7inno.+Open+Mic+desde+las+20:30hs.+Entrada+libre+y+gratuita.&location=Ophelia+Craft+Beer,+Av.+44+1135,+La+Plata,+Buenos+Aires" target="_blank" rel="noopener noreferrer" class="w-full py-3 px-4 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 hover:border-[#10b981]/50 text-white font-display text-xs tracking-wider uppercase flex items-center justify-center gap-2.5 transition-all shadow-md hover:scale-[1.01] text-center" onclick="trackEvent('click_calendar', 'Shows', 'Google Calendar HipHopFactory')">
+                            <i class="fa-regular fa-calendar-plus text-base text-[#10b981]"></i>
+                            <span data-i18n="tour_calendar_btn">Agendar en Calendar</span>
+                        </a>
+                        <a href="https://www.instagram.com/hiphopfactory.lp/" target="_blank" rel="noopener noreferrer" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#10b981] to-[#059669] hover:from-[#059669] hover:to-[#047857] text-white font-display text-xs tracking-wider uppercase flex items-center justify-center gap-2.5 transition-all shadow-lg hover:shadow-[#10b981]/25 hover:scale-[1.01] text-center" onclick="trackEvent('click_evento', 'Shows', 'HipHopFactory Vol 2')">
                             <i class="fa-brands fa-instagram text-lg"></i>
                             <span data-i18n="tour_cta">Ver más info en @hiphopfactory.lp</span>
                         </a>
                     </div>
                 </article>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Beatmaker Showcase (Opción 1) -->
+    <div id="modal-beats" class="fixed inset-0 z-[200] hidden flex-col items-center justify-center p-4 sm:p-6" aria-modal="true">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-md modal-backdrop transition-opacity duration-300 opacity-0" id="backdrop-beats"></div>
+        
+        <!-- Contenido -->
+        <div class="theme-card relative w-full max-w-2xl max-h-[85vh] overflow-y-auto p-6 md:p-8 modal-content scale-95 opacity-0 transition-all duration-300 flex flex-col gap-6 bg-[#0a0a0a]/95 custom-scrollbar z-10 border-white/10 shadow-2xl">
+            <!-- Botón Cerrar -->
+            <button type="button" id="btn-close-beats" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 text-white transition-colors focus:outline-none border border-white/10">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            
+            <!-- Header Modal Beats -->
+            <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4 border-b border-white/10 pb-6 text-center sm:text-left mt-2 sm:mt-0">
+                 <div class="w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-3xl text-[#a855f7] mx-auto sm:mx-0 shadow-lg shrink-0">
+                     <i class="fa-solid fa-compact-disc"></i>
+                 </div>
+                 <div class="w-full flex flex-col justify-center h-full">
+                     <div class="flex items-center justify-center sm:justify-start gap-2.5 flex-wrap">
+                         <h2 class="font-display text-2xl md:text-3xl text-white tracking-tighter uppercase" data-i18n="beats_title">Beatmaker Showcase</h2>
+                         <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#9333ea]/20 text-[#c084fc] border border-[#9333ea]/40 uppercase tracking-wider">
+                             ESTUDIO
+                         </span>
+                     </div>
+                     <p class="font-display text-xs md:text-sm text-[#a855f7] tracking-widest mt-1 uppercase" data-i18n="beats_subtitle">Instrumentales & Producción Musical</p>
+                 </div>
+            </div>
+
+            <!-- Introducción -->
+            <p class="text-gray-300 font-body text-xs sm:text-sm leading-relaxed" data-i18n="beats_intro">
+                Explorá instrumentales y ritmos creados por Luciano Posado (Duende Funk). Producción musical, beatmaking, diseño sonoro, mezcla y masterización.
+            </p>
+
+            <!-- Lista de Beats Interactiva (Solo 2 Tracks Oficiales Protegidos) -->
+            <div class="flex flex-col gap-3.5 select-none" oncontextmenu="return false;">
+                <!-- Beat 1: ARGENTUM BAP 101 -->
+                <div class="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-[#a855f7]/50 transition-all flex flex-col gap-3 group/beat" id="beat-card-1">
+                    <div class="flex items-center justify-between gap-3">
+                        <div class="flex items-center gap-3.5 min-w-0">
+                            <button type="button" onclick="togglePlayBeat(1)" class="w-12 h-12 rounded-xl bg-[#a855f7]/20 border border-[#a855f7]/40 hover:bg-[#a855f7] text-[#a855f7] hover:text-white flex items-center justify-center text-lg transition-all shadow-md shrink-0 focus:outline-none cursor-pointer" aria-label="Reproducir DND FUNK - ARGENTUM BAP 101">
+                                <i class="fa-solid fa-play ml-0.5" id="beat-icon-1"></i>
+                            </button>
+                            <div class="min-w-0">
+                                <div class="flex items-center gap-2 flex-wrap">
+                                    <h4 class="font-display text-sm sm:text-base text-white tracking-tight truncate">DND FUNK - ARGENTUM BAP 101</h4>
+                                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-[#a855f7]/20 text-[#c084fc] border border-[#a855f7]/30 uppercase tracking-wider">BOOM BAP</span>
+                                </div>
+                                <p class="text-xs text-gray-400 mt-0.5 truncate">Producción, Grabación & Mezcla: DUENDE FUNK</p>
+                            </div>
+                        </div>
+                        <div class="hidden sm:flex items-center gap-1 h-6 shrink-0 opacity-30 transition-opacity" id="beat-wave-1">
+                            <span class="wave-bar"></span>
+                            <span class="wave-bar"></span>
+                            <span class="wave-bar"></span>
+                            <span class="wave-bar"></span>
+                            <span class="wave-bar"></span>
+                        </div>
+                    </div>
+                    <!-- Barra de Progreso y Tiempo Personalizada -->
+                    <div class="flex items-center gap-3 pt-1">
+                        <span class="text-[11px] font-mono text-gray-400 w-9 text-right" id="beat-time-1">0:00</span>
+                        <div class="flex-grow h-2 bg-white/10 rounded-full overflow-hidden cursor-pointer relative group/bar" onclick="seekBeat(1, event)" id="beat-progress-container-1" title="Adelantar / Retroceder">
+                            <div class="h-full bg-gradient-to-r from-[#9333ea] to-[#c084fc] rounded-full transition-all duration-100" style="width: 0%;" id="beat-progress-1"></div>
+                        </div>
+                        <span class="text-[11px] font-mono text-gray-400 w-9" id="beat-duration-1">--:--</span>
+                    </div>
+                </div>
+
+                <!-- Beat 2: ARGENTUM BAP 505 -->
+                <div class="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-[#00F2FE]/50 transition-all flex flex-col gap-3 group/beat" id="beat-card-2">
+                    <div class="flex items-center justify-between gap-3">
+                        <div class="flex items-center gap-3.5 min-w-0">
+                            <button type="button" onclick="togglePlayBeat(2)" class="w-12 h-12 rounded-xl bg-[#00F2FE]/20 border border-[#00F2FE]/40 hover:bg-[#00F2FE] text-[#00F2FE] hover:text-black flex items-center justify-center text-lg transition-all shadow-md shrink-0 focus:outline-none cursor-pointer" aria-label="Reproducir DND FUNK - ARGENTUM BAP 505">
+                                <i class="fa-solid fa-play ml-0.5" id="beat-icon-2"></i>
+                            </button>
+                            <div class="min-w-0">
+                                <div class="flex items-center gap-2 flex-wrap">
+                                    <h4 class="font-display text-sm sm:text-base text-white tracking-tight truncate">DND FUNK - ARGENTUM BAP 505</h4>
+                                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-[#00F2FE]/20 text-[#00F2FE] border border-[#00F2FE]/30 uppercase tracking-wider">BOOM BAP</span>
+                                </div>
+                                <p class="text-xs text-gray-400 mt-0.5 truncate">Producción, Grabación & Mezcla: DUENDE FUNK</p>
+                            </div>
+                        </div>
+                        <div class="hidden sm:flex items-center gap-1 h-6 shrink-0 opacity-30 transition-opacity" id="beat-wave-2">
+                            <span class="wave-bar"></span>
+                            <span class="wave-bar"></span>
+                            <span class="wave-bar"></span>
+                            <span class="wave-bar"></span>
+                            <span class="wave-bar"></span>
+                        </div>
+                    </div>
+                    <!-- Barra de Progreso y Tiempo Personalizada -->
+                    <div class="flex items-center gap-3 pt-1">
+                        <span class="text-[11px] font-mono text-gray-400 w-9 text-right" id="beat-time-2">0:00</span>
+                        <div class="flex-grow h-2 bg-white/10 rounded-full overflow-hidden cursor-pointer relative group/bar" onclick="seekBeat(2, event)" id="beat-progress-container-2" title="Adelantar / Retroceder">
+                            <div class="h-full bg-gradient-to-r from-[#00F2FE] to-[#4facfe] rounded-full transition-all duration-100" style="width: 0%;" id="beat-progress-2"></div>
+                        </div>
+                        <span class="text-[11px] font-mono text-gray-400 w-9" id="beat-duration-2">--:--</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Badge de Seguridad y Protección de Derechos -->
+            <div class="flex items-center justify-between text-[11px] text-gray-400 bg-white/5 border border-white/10 px-3.5 py-2.5 rounded-xl select-none" oncontextmenu="return false;">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-shield-halved text-[#10b981] text-sm"></i>
+                    <span data-i18n="beats_security_note">Audio Protegido · Solo Escucha Oficial Streaming</span>
+                </div>
+                <span class="text-[10px] uppercase tracking-wider font-semibold text-gray-500">© DUENDE FUNK</span>
+            </div>
+
+            <!-- CTA Consultar por Beats -->
+            <div class="pt-2 border-t border-white/10">
+                <a href="mailto:duendefunkmusic@gmail.com?subject=Consulta%20por%20Beats%20y%20Producci%C3%B3n%20Musical" class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-[#9333ea] to-[#7c3aed] hover:from-[#7c3aed] hover:to-[#6d28d9] text-white font-display text-xs sm:text-sm tracking-wider uppercase flex items-center justify-center gap-2.5 transition-all shadow-lg hover:shadow-[#9333ea]/30 text-center" onclick="trackEvent('click_contacto_beats', 'Beats', 'Consulta Produccion')">
+                    <i class="fa-solid fa-sliders text-base"></i>
+                    <span data-i18n="beats_cta">Consultar por Beats & Producción</span>
+                </a>
             </div>
         </div>
     </div>
@@ -1111,7 +1309,19 @@
                 tour_map_link: "Cómo llegar",
                 tour_open_map: "Abrir en Google Maps",
                 tour_cta: "Ver más info en @hiphopfactory.lp",
-                toast_unmuted: "¡Sonido activado! 🔊"
+                toast_unmuted: "¡Sonido activado! 🔊",
+                tour_calendar_btn: "Agendar en Calendar",
+                countdown_title: "Cuenta Regresiva para el Show",
+                days: "Días",
+                hours: "Horas",
+                mins: "Min",
+                secs: "Seg",
+                beats_title: "Beatmaker Showcase",
+                beats_desc: "Escuchar instrumentales oficiales & exclusivas",
+                beats_subtitle: "Instrumentales & Producción Musical",
+                beats_intro: "Escuchá beats e instrumentales originales producidos por Duende Funk. Producción musical, beatmaking, grabación, mezcla y masterización.",
+                beats_security_note: "Audio Protegido · Solo Escucha Oficial Streaming",
+                beats_cta: "Consultar por Beats & Producción"
             },
             en: {
                 subtitle: "LUZ DEL ALBA - AVAILABLE NOW",
@@ -1150,7 +1360,19 @@
                 tour_map_link: "Get Directions",
                 tour_open_map: "Open in Google Maps",
                 tour_cta: "More info on @hiphopfactory.lp",
-                toast_unmuted: "Audio unmuted! 🔊"
+                toast_unmuted: "Audio unmuted! 🔊",
+                tour_calendar_btn: "Add to Calendar",
+                countdown_title: "Live Show Countdown",
+                days: "Days",
+                hours: "Hours",
+                mins: "Mins",
+                secs: "Secs",
+                beats_title: "Beatmaker Showcase",
+                beats_desc: "Listen to official & exclusive instrumentals",
+                beats_subtitle: "Instrumentals & Music Production",
+                beats_intro: "Listen to original beats and instrumentals produced by Duende Funk. Music production, beatmaking, recording, mix and mastering.",
+                beats_security_note: "Protected Audio · Official Streaming Only",
+                beats_cta: "Inquire about Beats & Production"
             }
         };
 
@@ -1466,6 +1688,243 @@
         btnFechas.addEventListener('click', openModalFechas);
         btnCloseFechas.addEventListener('click', closeModalFechas);
         backdropFechas.addEventListener('click', closeModalFechas);
+
+        // --- Cuenta Regresiva para el Show (Opción 2) ---
+        const eventDate = new Date('2026-10-15T20:30:00-03:00').getTime();
+        function updateShowCountdown() {
+            const now = new Date().getTime();
+            const diff = eventDate - now;
+
+            if (diff <= 0) {
+                document.getElementById('countdown-days').innerText = "00";
+                document.getElementById('countdown-hours').innerText = "00";
+                document.getElementById('countdown-minutes').innerText = "00";
+                document.getElementById('countdown-seconds').innerText = "00";
+                return;
+            }
+
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            const elD = document.getElementById('countdown-days');
+            const elH = document.getElementById('countdown-hours');
+            const elM = document.getElementById('countdown-minutes');
+            const elS = document.getElementById('countdown-seconds');
+
+            if (elD) elD.innerText = String(d).padStart(2, '0');
+            if (elH) elH.innerText = String(h).padStart(2, '0');
+            if (elM) elM.innerText = String(m).padStart(2, '0');
+            if (elS) elS.innerText = String(s).padStart(2, '0');
+        }
+        setInterval(updateShowCountdown, 1000);
+        updateShowCountdown();
+
+        // --- Modal Beatmaker Showcase Logic (Opción 1) ---
+        const btnBeats = document.getElementById('btn-beats');
+        const modalBeats = document.getElementById('modal-beats');
+        const btnCloseBeats = document.getElementById('btn-close-beats');
+        const backdropBeats = document.getElementById('backdrop-beats');
+
+        function openModalBeats() {
+            trackEvent('abrir_modal', 'Beats', 'Modal Beatmaker Showcase');
+            modalBeats.classList.remove('hidden');
+            modalBeats.classList.add('flex');
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    modalBeats.classList.add('modal-show');
+                    document.body.style.overflow = 'hidden'; 
+                });
+            });
+        }
+
+        function closeModalBeats() {
+            modalBeats.classList.remove('modal-show');
+            document.body.style.overflow = ''; 
+            stopCurrentBeat();
+            setTimeout(() => {
+                modalBeats.classList.add('hidden');
+                modalBeats.classList.remove('flex');
+            }, 300); 
+        }
+
+        if (btnBeats) btnBeats.addEventListener('click', openModalBeats);
+        if (btnCloseBeats) btnCloseBeats.addEventListener('click', closeModalBeats);
+        if (backdropBeats) backdropBeats.addEventListener('click', closeModalBeats);
+
+        // --- Reproductor de Beats Originales con Protección y Ofuscación ---
+        let currentAudio = null;
+        let currentPlayingId = null;
+        const beatBlobs = {};
+
+        // URLs de audio ofuscadas en Base64 (protege contra rastreadores y enlaces directos en el DOM)
+        const _kSecSources = {
+            1: 'aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0R1ZW5kZUZ1bmsvTGlua3MvbWFpbi9ETkQlMjBGVU5LJTIwLSUyMEFSR0VOVFVNJTIwQkFQJTIwMTAxLm1wMw==',
+            2: 'aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0R1ZW5kZUZ1bmsvTGlua3MvbWFpbi9ETkQlMjBGVU5LJTIwLSUyMEFSR0VOVFVNJTIwQkFQJTIwNTA1Lm1wMw=='
+        };
+        const _kLocalSources = {
+            1: 'DND%20FUNK%20-%20ARGENTUM%20BAP%20101.mp3',
+            2: 'DND%20FUNK%20-%20ARGENTUM%20BAP%20505.mp3'
+        };
+
+        function formatAudioTime(seconds) {
+            if (isNaN(seconds) || !isFinite(seconds)) return '0:00';
+            const m = Math.floor(seconds / 60);
+            const s = Math.floor(seconds % 60);
+            return `${m}:${s < 10 ? '0' : ''}${s}`;
+        }
+
+        function stopCurrentBeat() {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+            }
+            if (currentPlayingId) {
+                const icon = document.getElementById(`beat-icon-${currentPlayingId}`);
+                const wave = document.getElementById(`beat-wave-${currentPlayingId}`);
+                const card = document.getElementById(`beat-card-${currentPlayingId}`);
+                if (icon) icon.className = 'fa-solid fa-play ml-0.5';
+                if (wave) wave.classList.remove('wave-playing', 'opacity-100');
+                if (card) card.classList.remove('border-[#a855f7]', 'border-[#00F2FE]', 'bg-white/10');
+                currentPlayingId = null;
+            }
+        }
+
+        async function getProtectedAudioUrl(beatId) {
+            // Reutilizar Blob en memoria si ya fue generado
+            if (beatBlobs[beatId]) {
+                return beatBlobs[beatId];
+            }
+
+            const isHttp = window.location.protocol.startsWith('http');
+            const targetUrl = isHttp ? atob(_kSecSources[beatId]) : decodeURIComponent(_kLocalSources[beatId]);
+
+            try {
+                // Descarga como ArrayBuffer/Blob en memoria RAM
+                // En el navegador solo aparecerá como blob:https://duendefunk.com/... ocultando la URL original
+                const response = await fetch(targetUrl);
+                if (!response.ok) throw new Error('Fetch status ' + response.status);
+                const blob = await response.blob();
+                const blobUrl = URL.createObjectURL(blob);
+                beatBlobs[beatId] = blobUrl;
+                return blobUrl;
+            } catch (e) {
+                // Fallback directo en memoria si hay restricciones locales o de red
+                return targetUrl;
+            }
+        }
+
+        async function togglePlayBeat(beatId) {
+            // Pausar video de YouTube si estaba reproduciéndose
+            sendYouTubeCommand('pauseVideo');
+
+            // Si se hace clic en el que ya está sonando, pausar o reanudar
+            if (currentPlayingId === beatId && currentAudio) {
+                const icon = document.getElementById(`beat-icon-${beatId}`);
+                const wave = document.getElementById(`beat-wave-${beatId}`);
+                if (!currentAudio.paused) {
+                    currentAudio.pause();
+                    if (icon) icon.className = 'fa-solid fa-play ml-0.5';
+                    if (wave) wave.classList.remove('wave-playing', 'opacity-100');
+                } else {
+                    currentAudio.play();
+                    if (icon) icon.className = 'fa-solid fa-pause';
+                    if (wave) wave.classList.add('wave-playing', 'opacity-100');
+                }
+                return;
+            }
+
+            // Detener el track anterior
+            stopCurrentBeat();
+
+            const icon = document.getElementById(`beat-icon-${beatId}`);
+            const wave = document.getElementById(`beat-wave-${beatId}`);
+            const card = document.getElementById(`beat-card-${beatId}`);
+
+            // Icono de carga temporal mientras bufferiza
+            if (icon) icon.className = 'fa-solid fa-spinner fa-spin text-sm';
+
+            try {
+                const audioUrl = await getProtectedAudioUrl(beatId);
+                currentAudio = new Audio(audioUrl);
+
+                // Configuración de seguridad anti-descarga
+                currentAudio.controlsList = 'nodownload noplaybackrate';
+                currentAudio.disableRemotePlayback = true;
+
+                currentPlayingId = beatId;
+
+                // Actualizar interfaz
+                if (icon) icon.className = 'fa-solid fa-pause';
+                if (wave) wave.classList.add('wave-playing', 'opacity-100');
+                if (card) {
+                    card.classList.add(beatId === 1 ? 'border-[#a855f7]' : 'border-[#00F2FE]', 'bg-white/10');
+                }
+
+                // Metadata y duración
+                currentAudio.addEventListener('loadedmetadata', () => {
+                    const durEl = document.getElementById(`beat-duration-${beatId}`);
+                    if (durEl && currentAudio && isFinite(currentAudio.duration)) {
+                        durEl.textContent = formatAudioTime(currentAudio.duration);
+                    }
+                });
+
+                // Avance continuo en tiempo real
+                currentAudio.addEventListener('timeupdate', () => {
+                    if (!currentAudio || currentPlayingId !== beatId) return;
+                    const curEl = document.getElementById(`beat-time-${beatId}`);
+                    const barEl = document.getElementById(`beat-progress-${beatId}`);
+                    const durEl = document.getElementById(`beat-duration-${beatId}`);
+
+                    if (curEl) curEl.textContent = formatAudioTime(currentAudio.currentTime);
+                    if (durEl && currentAudio.duration && isFinite(currentAudio.duration)) {
+                        durEl.textContent = formatAudioTime(currentAudio.duration);
+                    }
+                    if (barEl && currentAudio.duration) {
+                        const pct = (currentAudio.currentTime / currentAudio.duration) * 100;
+                        barEl.style.width = `${pct}%`;
+                    }
+                });
+
+                // Fin de reproducción
+                currentAudio.addEventListener('ended', () => {
+                    stopCurrentBeat();
+                    const barEl = document.getElementById(`beat-progress-${beatId}`);
+                    const curEl = document.getElementById(`beat-time-${beatId}`);
+                    if (barEl) barEl.style.width = '0%';
+                    if (curEl) curEl.textContent = '0:00';
+                });
+
+                await currentAudio.play();
+                trackEvent('reproducir_beat', 'Beats', `Beat ${beatId}`);
+            } catch (err) {
+                console.error('Error al reproducir beat:', err);
+                if (icon) icon.className = 'fa-solid fa-play ml-0.5';
+                showToast('toast_copy'); // notificación preventiva si hubiera fallo
+            }
+        }
+
+        // Función para saltar en la barra de tiempo (Seek)
+        function seekBeat(beatId, event) {
+            if (currentPlayingId !== beatId || !currentAudio || !currentAudio.duration) return;
+            const container = document.getElementById(`beat-progress-container-${beatId}`);
+            if (!container) return;
+            const rect = container.getBoundingClientRect();
+            const clickX = event.clientX - rect.left;
+            const width = rect.width;
+            const fraction = Math.max(0, Math.min(1, clickX / width));
+            currentAudio.currentTime = fraction * currentAudio.duration;
+        }
+
+        // Bloqueo de atajos de teclado para guardar archivos mientras el modal está activo
+        window.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S' || e.key === 'u' || e.key === 'U')) {
+                if (modalBeats && !modalBeats.classList.contains('hidden')) {
+                    e.preventDefault();
+                }
+            }
+        });
     </script>
 </body>
 </html>
