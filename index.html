@@ -9,6 +9,11 @@
     <link rel="canonical" href="https://www.duendefunk.com/">
     <meta name="description" content="Duende Funk (Luciano Posado) es un rapero, freestyler y productor musical de Pergamino. Pionero de la cultura Hip Hop, destaca por su ingenio en las letras y sus habilidades como beatmaker.">
     <meta name="author" content="Duende Funk">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/DuendeFunk/Links/main/favicon.png">
+    <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/DuendeFunk/Links/main/favicon.png">
 
     <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
     <meta property="og:type" content="website">
@@ -145,7 +150,9 @@
       "@context": "https://schema.org",
       "@type": "MusicEvent",
       "name": "HipHopFactory Vol. 2",
+      "image": "https://raw.githubusercontent.com/DuendeFunk/Links/main/fotoperfil.png",
       "startDate": "2026-10-15T20:30:00-03:00",
+      "endDate": "2026-10-16T02:00:00-03:00",
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "location": {
@@ -172,6 +179,7 @@
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "ARS",
+        "validFrom": "2026-10-01T00:00:00-03:00",
         "availability": "https://schema.org/InStock",
         "url": "https://www.instagram.com/hiphopfactory.lp/"
       },
@@ -351,7 +359,7 @@
             transition: all var(--transition-speed);
             backdrop-filter: var(--backdrop-blur, none);
             overflow: hidden;
-            padding: calc(var(--border-width) * 2);
+            padding: 12px;
         }
 
         .theme-video-inner {
@@ -362,11 +370,96 @@
             background-color: #000;
         }
 
+        .media-tab-btn {
+            color: #9ca3af;
+            background: transparent;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .media-tab-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .media-tab-btn.active {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
         .theme-avatar {
-            border: var(--border-width) solid var(--border-color);
             border-radius: 50%;
             transition: filter var(--transition-speed);
             height: 100%; width: 100%;
+        }
+
+        /* --- Animación de Flotación / Movimiento del Avatar --- */
+        @keyframes avatarFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-9px);
+            }
+        }
+
+        .avatar-float-container {
+            animation: avatarFloat 4s ease-in-out infinite;
+            will-change: transform;
+        }
+
+        /* --- Contenedor con Borde Neón y Sombra --- */
+        .avatar-shine-box {
+            position: relative;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.15), 0 10px 40px rgba(0, 0, 0, 0.7);
+            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .avatar-shine-box:hover {
+            box-shadow: 0 0 45px rgba(0, 242, 254, 0.35), 0 0 25px rgba(225, 48, 108, 0.35);
+            border-color: rgba(0, 242, 254, 0.5);
+        }
+
+        /* --- Haz de Luz / Flash que pasa de un lado a otro --- */
+        @keyframes avatarLightSweep {
+            0% {
+                transform: translate3d(-140%, -140%, 0) rotate(35deg);
+                opacity: 0;
+            }
+            15% {
+                opacity: 0.9;
+            }
+            45% {
+                transform: translate3d(140%, 140%, 0) rotate(35deg);
+                opacity: 0.9;
+            }
+            55%, 100% {
+                transform: translate3d(140%, 140%, 0) rotate(35deg);
+                opacity: 0;
+            }
+        }
+
+        .avatar-flash-beam {
+            position: absolute;
+            top: -60%;
+            left: -60%;
+            width: 220%;
+            height: 220%;
+            background: linear-gradient(
+                115deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.1) 40%,
+                rgba(255, 255, 255, 0.8) 50%,
+                rgba(0, 242, 254, 0.5) 54%,
+                transparent 65%
+            );
+            pointer-events: none;
+            z-index: 20;
+            animation: avatarLightSweep 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
         }
 
         .theme-icon-box {
@@ -465,9 +558,13 @@
                 <!-- SECCIÓN DE IDENTIDAD -->
                 <section class="lg:col-span-5 flex flex-col gap-6 items-center lg:items-start text-center lg:text-left">
                     
-                    <!-- Avatar -->
-                    <div class="relative group cursor-pointer w-40 h-40 md:w-56 md:h-56">
-                        <img src="https://raw.githubusercontent.com/DuendeFunk/Links/main/duendefunk.png" alt="DuendeFunk" class="theme-avatar relative z-10 object-cover bg-white shadow-2xl transition-transform duration-500 hover:scale-105">
+                    <!-- Avatar con Movimiento Flotante y Flash de Luz -->
+                    <div class="relative group cursor-pointer w-40 h-40 md:w-56 md:h-56 avatar-float-container">
+                        <div class="avatar-shine-box relative w-full h-full rounded-full overflow-hidden transition-transform duration-500 group-hover:scale-105">
+                            <img src="https://raw.githubusercontent.com/DuendeFunk/Links/main/duendefunk.png" alt="DuendeFunk" class="theme-avatar object-cover w-full h-full bg-black">
+                            <!-- Haz de luz / Flash animado -->
+                            <div class="avatar-flash-beam"></div>
+                        </div>
                     </div>
 
                     <!-- Información del Artista -->
@@ -484,18 +581,87 @@
                 <!-- SECCIÓN DE CONTENIDO Y ENLACES -->
                 <section class="lg:col-span-7 flex flex-col gap-4 md:gap-6">
                     
-                    <!-- Video Destacado -->
+                    <!-- Multimedia Destacado con Selector (YouTube / Instagram Reel) -->
                     <article class="theme-video-container">
-                        <div class="theme-video-inner aspect-video">
-                            <iframe 
-                                src="https://www.youtube.com/embed/G66_1v7-S6s?enablejsapi=1&autoplay=0&controls=1&modestbranding=1&rel=0" 
-                                title="Luz del Alba - Video Oficial" 
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen
-                                class="absolute top-0 left-0 w-full h-full"
-                                id="featured-video">
-                            </iframe>
+                        <!-- Selector de Pestañas Multimedia -->
+                        <div class="flex items-center justify-between mb-3 px-1">
+                            <div class="flex items-center gap-1.5 p-1 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md">
+                                <button type="button" id="tab-btn-yt" class="media-tab-btn active px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-2" onclick="switchMediaTab('youtube')">
+                                    <i class="fa-brands fa-youtube text-[#FF0000]"></i>
+                                    <span>YouTube</span>
+                                </button>
+                                <button type="button" id="tab-btn-ig" class="media-tab-btn px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-2 opacity-70 hover:opacity-100" onclick="switchMediaTab('instagram')">
+                                    <i class="fa-brands fa-instagram text-[#E1306C]"></i>
+                                    <span>Reel IG</span>
+                                </button>
+                            </div>
+                            <span class="text-[11px] font-semibold text-gray-400 tracking-wider hidden sm:inline-block uppercase" id="media-tab-status">
+                                Luz del Alba
+                            </span>
+                        </div>
+
+                        <!-- Panel 1: YouTube -->
+                        <div id="media-panel-yt">
+                            <div class="theme-video-inner aspect-video relative group/video">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/G66_1v7-S6s?enablejsapi=1&autoplay=1&mute=1&controls=1&modestbranding=1&rel=0&playsinline=1" 
+                                    title="Luz del Alba - Video Oficial" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; autoplay" 
+                                    allowfullscreen
+                                    class="absolute top-0 left-0 w-full h-full"
+                                    id="featured-video">
+                                </iframe>
+
+                                <!-- Botón Overlay Flotante Desmutear -->
+                                <button type="button" id="overlay-unmute-btn" onclick="toggleMuteVideo()" class="absolute top-3 right-3 z-20 flex items-center gap-2 bg-black/75 hover:bg-black text-white px-3 py-1.5 rounded-full border border-white/20 text-xs font-semibold backdrop-blur-md shadow-xl transition-all hover:scale-105 active:scale-95 cursor-pointer">
+                                    <i class="fa-solid fa-volume-xmark text-red-400" id="overlay-unmute-icon"></i>
+                                    <span id="overlay-unmute-text">Desmutear</span>
+                                </button>
+                            </div>
+
+                            <!-- Botón y Ficha de Créditos Importantes con Desmutear -->
+                            <div class="mt-3">
+                                <button type="button" id="btn-unmute-video" onclick="toggleMuteVideo()" class="w-full group/unmute relative overflow-hidden rounded-2xl bg-gradient-to-r from-red-950/40 via-white/[0.04] to-black/60 border border-white/10 hover:border-red-500/40 p-3 sm:p-4 transition-all duration-300 text-left flex flex-col sm:flex-row sm:items-center gap-3.5 sm:gap-5 shadow-lg hover:shadow-red-500/10 cursor-pointer">
+                                    <!-- Botón Desmutear Destacado -->
+                                    <div class="flex items-center shrink-0">
+                                        <div id="unmute-badge" class="flex items-center justify-center gap-2.5 px-4 py-2.5 rounded-xl bg-red-600 group-hover/unmute:bg-red-500 text-white font-display text-xs uppercase tracking-wider shadow-md transition-all">
+                                            <i id="unmute-icon" class="fa-solid fa-volume-xmark text-sm animate-pulse"></i>
+                                            <span id="unmute-text">DESMUTEAR</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Divisor sutil en desktop -->
+                                    <div class="hidden sm:block w-px h-14 bg-white/10 shrink-0"></div>
+
+                                    <!-- Créditos Oficiales (3 líneas ordenadas y limpias) -->
+                                    <div class="flex flex-col justify-center gap-1.5 text-xs font-body w-full min-w-0">
+                                        <!-- Línea 1: Beat -->
+                                        <div class="flex items-center gap-2">
+                                            <span class="text-red-400 font-bold uppercase tracking-wider text-[11px] shrink-0">BEAT</span>
+                                            <span class="text-white font-semibold">by PRESCI</span>
+                                        </div>
+                                        <!-- Línea 2: Grabación, Mix y Master -->
+                                        <div class="flex items-center gap-2">
+                                            <span class="text-[#00F2FE] font-bold text-[11px] shrink-0">Grabación, Mix y Master:</span>
+                                            <span class="text-white font-semibold">DUENDEFUNK</span>
+                                        </div>
+                                        <!-- Línea 3: Shot y Edición -->
+                                        <div class="flex items-center gap-2">
+                                            <span class="text-amber-400 font-bold text-[11px] shrink-0">SHOT y EDICIÓN BY:</span>
+                                            <span class="text-white font-semibold">NUBE</span>
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Panel 2: Instagram Reel -->
+                        <div id="media-panel-ig" class="hidden">
+                            <div class="w-full flex justify-center items-center max-h-[580px] overflow-y-auto custom-scrollbar rounded-xl bg-black/40 border border-white/5 p-2">
+                                <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/Dd7iqlshEp4/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a href="https://www.instagram.com/reel/Dd7iqlshEp4/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">Ver esta publicación en Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/reel/Dd7iqlshEp4/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">Una publicación compartida por martin chavez (@martocha__)</a></p></div></blockquote>
+                                <script async src="//www.instagram.com/embed.js"></script>
+                            </div>
                         </div>
                     </article>
 
@@ -922,7 +1088,8 @@
                 tour_host: "Host:",
                 tour_map_link: "Cómo llegar",
                 tour_open_map: "Abrir en Google Maps",
-                tour_cta: "Ver más info en @hiphopfactory.lp"
+                tour_cta: "Ver más info en @hiphopfactory.lp",
+                toast_unmuted: "¡Sonido activado! 🔊"
             },
             en: {
                 subtitle: "LUZ DEL ALBA - AVAILABLE NOW",
@@ -960,7 +1127,8 @@
                 tour_host: "Host:",
                 tour_map_link: "Get Directions",
                 tour_open_map: "Open in Google Maps",
-                tour_cta: "More info on @hiphopfactory.lp"
+                tour_cta: "More info on @hiphopfactory.lp",
+                toast_unmuted: "Audio unmuted! 🔊"
             }
         };
 
@@ -1060,6 +1228,123 @@
                 trackEvent('error_copia', 'Interaccion', 'Error al copiar: ' + text);
             }
             textArea.remove();
+        }
+
+        // --- Control de YouTube (Autoplay, Mute / Unmute & Créditos) ---
+        let isVideoMuted = true;
+
+        function sendYouTubeCommand(func, args = []) {
+            const iframe = document.getElementById('featured-video');
+            if (iframe && iframe.contentWindow) {
+                try {
+                    iframe.contentWindow.postMessage(JSON.stringify({
+                        event: 'command',
+                        func: func,
+                        args: args
+                    }), '*');
+                } catch (e) {
+                    console.error('Error enviando comando a YouTube:', e);
+                }
+            }
+        }
+
+        function toggleMuteVideo() {
+            const overlayIcon = document.getElementById('overlay-unmute-icon');
+            const overlayText = document.getElementById('overlay-unmute-text');
+            const unmuteIcon = document.getElementById('unmute-icon');
+            const unmuteText = document.getElementById('unmute-text');
+            const unmuteHint = document.getElementById('unmute-hint');
+            const unmuteBadge = document.getElementById('unmute-badge');
+            const rightIcon = document.getElementById('unmute-right-icon');
+
+            if (isVideoMuted) {
+                // Desmutear y reproducir con sonido
+                sendYouTubeCommand('unMute');
+                sendYouTubeCommand('setVolume', [100]);
+                sendYouTubeCommand('playVideo');
+                isVideoMuted = false;
+
+                if (overlayIcon) overlayIcon.className = 'fa-solid fa-volume-high text-emerald-400';
+                if (overlayText) overlayText.textContent = 'Silenciar';
+
+                if (unmuteIcon) unmuteIcon.className = 'fa-solid fa-volume-high text-sm';
+                if (unmuteText) unmuteText.textContent = 'SILENCIAR';
+                if (unmuteHint) unmuteHint.textContent = 'Sonido activado';
+                if (rightIcon) rightIcon.className = 'fa-solid fa-volume-high ml-2 text-emerald-400';
+
+                if (unmuteBadge) {
+                    unmuteBadge.classList.remove('bg-red-600', 'group-hover/unmute:bg-red-500');
+                    unmuteBadge.classList.add('bg-emerald-600', 'group-hover/unmute:bg-emerald-500');
+                }
+
+                showToast('toast_unmuted');
+                trackEvent('audio_unmute', 'Media', 'Desmutear YouTube');
+            } else {
+                // Silenciar
+                sendYouTubeCommand('mute');
+                isVideoMuted = true;
+
+                if (overlayIcon) overlayIcon.className = 'fa-solid fa-volume-xmark text-red-400';
+                if (overlayText) overlayText.textContent = 'Desmutear';
+
+                if (unmuteIcon) unmuteIcon.className = 'fa-solid fa-volume-xmark text-sm animate-pulse';
+                if (unmuteText) unmuteText.textContent = 'DESMUTEAR';
+                if (unmuteHint) unmuteHint.textContent = 'Clic para escuchar';
+                if (rightIcon) rightIcon.className = 'fa-solid fa-volume-high ml-2 text-red-400';
+
+                if (unmuteBadge) {
+                    unmuteBadge.classList.remove('bg-emerald-600', 'group-hover/unmute:bg-emerald-500');
+                    unmuteBadge.classList.add('bg-red-600', 'group-hover/unmute:bg-red-500');
+                }
+
+                trackEvent('audio_mute', 'Media', 'Silenciar YouTube');
+            }
+        }
+
+        // Autoplay asegurado al cargar la web
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                sendYouTubeCommand('playVideo');
+                sendYouTubeCommand('mute');
+            }, 600);
+        });
+
+        // --- Selector de Pestañas Multimedia (YouTube / Instagram Reel) ---
+        function switchMediaTab(tab) {
+            const tabBtnYt = document.getElementById('tab-btn-yt');
+            const tabBtnIg = document.getElementById('tab-btn-ig');
+            const panelYt = document.getElementById('media-panel-yt');
+            const panelIg = document.getElementById('media-panel-ig');
+            const tabStatus = document.getElementById('media-tab-status');
+
+            if (tab === 'youtube') {
+                tabBtnYt.classList.add('active');
+                tabBtnYt.classList.remove('opacity-70');
+                tabBtnIg.classList.remove('active');
+                tabBtnIg.classList.add('opacity-70');
+                panelYt.classList.remove('hidden');
+                panelIg.classList.add('hidden');
+                if (tabStatus) tabStatus.textContent = 'Luz del Alba';
+                sendYouTubeCommand('playVideo');
+                trackEvent('switch_media_tab', 'Media', 'YouTube');
+            } else {
+                tabBtnIg.classList.add('active');
+                tabBtnIg.classList.remove('opacity-70');
+                tabBtnYt.classList.remove('active');
+                tabBtnYt.classList.add('opacity-70');
+                panelIg.classList.remove('hidden');
+                panelYt.classList.add('hidden');
+                if (tabStatus) tabStatus.textContent = 'Reel en Vivo';
+                
+                // Pausar YouTube para evitar audio superpuesto
+                sendYouTubeCommand('pauseVideo');
+
+                // Cargar/procesar embed de Instagram si aún no se renderizó
+                if (window.instgrm && window.instgrm.Widgets) {
+                    window.instgrm.Widgets.load();
+                }
+                trackEvent('switch_media_tab', 'Media', 'Instagram Reel');
+            }
         }
 
         // --- YouTube Deep Linking Logic ---
